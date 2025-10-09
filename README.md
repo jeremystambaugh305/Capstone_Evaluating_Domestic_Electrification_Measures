@@ -10,14 +10,42 @@
 
 
 ## Business Requirements
-* Describe your business requirements
+* This project will evaluate the current cost and carbon reduction potential for the following 3 major electrification measures available to households where none of these currently exists:
 
+1. An electric car (Ecar)
+2. A rooftop mounted solar PV array (Solar PV)
+3. An air source heat pump (ASHP)
+
+These are in my anticipated descending order of potential cost saving for an average home with gas heating and a petrol car.
 
 ## Hypothesis and how to validate?
-* List here your project hypothesis(es) and how you envision validating it (them) 
+* I anticipate the following results but these will be evaluated in this project:-
+
+1. Out of the 3 options, Ecars, in particular secondhand, will have the greatest cost saving potential where home charging is available but this will be greatly diminished, possibly negated, where home charging is unavailable with all charging from public chargers.
+
+2. Moderate long term potential cost savings from solar PV in households with high daytime occupancy, particularly if high energy electrical appliances are operated at times of high sun. But savings will be greatly diminished if daytime occupancy is low as current export values are low.  Incorporating battery storage may improve but only slightly as they have high up front costs.
+
+3. No cost saving from air source heat pumps compared with gas heating as 
+i) The up front costs of ASHPs are substantially higher than gas boilers even with the current government boiler upgrade grant support scheme (BUS) 
+ii) The current ratio between electricity and gas prices is generally higher than the ratio between heat pump and gas boiler efficiency meaning air source heat pumps have higher fuel costs than gas boilers. 
+The above cost disadvanteges are offset to a degree by ASHPs having longer anticipated life spans and lower maintenance costs, but these advantages seem unlikely to reverse the situation.
+
+iii) All options will clearly reduce CO2 emissions but solar PV will have the lowest CO2 reductions in most cases due to the carbon intensity and generated electrical energy being much lower than the carbon intensity and displaced heating gas or car petrol consumption energy.  
+
+iv) For an averahe household, Ecars and ASHPs displace a very similar amount of CO2, just over 2 Tonnes.  This is based on average annual car mileage of 7,100 miles at 45MPG and gas heating consumption of 11,500kWh at an efficiency of 86%GCV. So Ecars will likely displace more CO2 than ASHPs in households with a higher ratio of car mileage/heating consumption and vice versa.
+
+These anticipated results will be evaluated by cost and carbon calculations using techno-economic data obtained from Kaggle, UK government and other public websites which will be analysed statistically and feature engineered as necessary before feeding these calculations.
+
+Key data and outputs will be displayed in interactive dashboards using Power BI to visually demonstrate the up front costs and the cost and carbon saving potentials of each of these 3 measures, firstly under the likely range of domestic circumstances and secondly in more detail, those particular to each household.  The aim is to help households decide whether to proceed with one or more of these electriciation technologies and if so which one(s).  
+
+This will be a general tool covering a broad range of situations using datasets some of which are changing quickly so soon outdated, so it is advised that this be followed up with more detailed and focussed analyses using the latest data.
 
 ## Project Plan
-* Outline the high-level steps taken for the analysis.
+
+# 
+### ECars
+
+A techno-economic data (including up front costs, battery size, efficiency) were obtained from Kaggle.  Note this data was produced in 2023 so may be somewhat outdated.  For example some web searches indicate some cars no longer available, new cars available and some substantial price reductions so this data is likely to be conservative.  I have kept to this dataset as I know of no more recent comprehensive set but this would be a potential future improvement.
 * How was the data managed throughout the collection, processing, analysis and interpretation steps?
 * Why did you choose the research methodologies you used?
 
@@ -36,6 +64,24 @@
 
 ## Dashboard Design
 * List all dashboard pages and their content, either blocks of information or widgets, like buttons, checkboxes, images, or any other item that your dashboard library supports.
+
+* Ecars. 
+1. Key dashboard result - a bubble plot showing lifetime cost savings of the most economical Ecar for each mileage range and annual mileage combination (lowest up front or 8 year cost depending on user selection) by bubble size and colour on a 2 dimensional plot with range and annual mileage on the x and y axes respectively. This allows users to quickly and flexibly see a map of all scenarios, which are most favourable, if well known, the point on the map the range and annual mileage sits, or if uncertain the region of applicable scenarios to judge how much the best Ecar is likely to save them over 8 years for a new car or 4 years for a 4-year old used car.
+
+Selectable variable setting variations on the above:-
+
+i) Access to a home charger Y/N.
+ii) Is the Ecar is new or second hand.
+iii) Select cheapest based on up front or 8 year total cost.
+iv) Counterfactual petrol car is an assumed equivalent or cheapest.
+v) Whether assumed maintenance cost saving is low/med or high.
+
+# Check, will I have to calculate all above scenarios in the Jupyter notebook i.e. multiplying table size by 2*2*2*2*3=48 then filter on the above in Power BI?  May just opt for Med maint cost saving to reduce data and simplify for user?
+
+2. More detailed interactive plots filtered depending on range and annual mileage selection on main plot:-
+
+i) Bar chart showing 
+
 * Later, during the project development, you may revisit your dashboard plan to update a given feature (for example, at the beginning of the project you were confident you would use a given plot to display an insight but subsequently you used another plot type).
 * How were data insights communicated to technical and non-technical audiences?
 * Explain how the dashboard was designed to communicate complex data insights to different audiences. 

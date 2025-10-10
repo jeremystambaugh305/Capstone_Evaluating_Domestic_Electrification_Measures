@@ -66,21 +66,38 @@ A techno-economic data (including up front costs, battery size, efficiency) were
 * List all dashboard pages and their content, either blocks of information or widgets, like buttons, checkboxes, images, or any other item that your dashboard library supports.
 
 * Ecars. 
-1. Key dashboard result - a bubble plot showing lifetime cost savings of the most economical Ecar for each mileage range and annual mileage combination (lowest up front or 8 year cost depending on user selection) by bubble size and colour on a 2 dimensional plot with range and annual mileage on the x and y axes respectively. This allows users to quickly and flexibly see a map of all scenarios, which are most favourable, if well known, the point on the map the range and annual mileage sits, or if uncertain the region of applicable scenarios to judge how much the best Ecar is likely to save them over 8 years for a new car or 4 years for a 4-year old used car.
+1. Key dashboard result - a bubble plot showing lifetime cost savings of the most economical Ecar for each mileage range and annual mileage combination (lowest up front or 8 year cost depending on user selection) by bubble size and colour on a 2 dimensional plot with range and annual mileage on the x and y axes respectively. I developed the idea in Excel as shown below but this may look diferent, hopefully better in Power BI where savings would also be demonstrated with colour shading and negative values in red scale rather than grey.
+
+![alt text](image-2.png)
+
+This allows users to quickly and flexibly see a map of all range and annual mileage scenarios, which are most favourable, if well known, the point on the map the range and annual mileage sits, or if uncertain the region of applicable scenarios to judge how much the best Ecar is likely to save them over 8 years for a new car or 4 years for a 4-year old used car.
 
 Selectable variable setting variations on the above:-
 
 i) Access to a home charger Y/N.
-ii) Is the Ecar is new or second hand.
-iii) Select cheapest based on up front or 8 year total cost.
-iv) Counterfactual petrol car is an assumed equivalent or cheapest.
-v) Whether assumed maintenance cost saving is low/med or high.
+ii) If the Ecar is new or 4 year old used.
+iii) If Ecar and counterfactual petrol car would be bought with cash or a loan at 7.5%
+iv) If counterfactual petrol car is an assumed to be equivalent or the cheapest.
+v) If anticipated maintenance cost saving is low/med or high.
+vi) If cheapest car is selected based on up front or total cost over 8/4 years for new/used.
 
-# Check, will I have to calculate all above scenarios in the Jupyter notebook i.e. multiplying table size by 2*2*2*2*3=48 then filter on the above in Power BI?  May just opt for Med maint cost saving to reduce data and simplify for user?
+Results for all 96 combinations will be pre calculated in Jupyter notebook and loaded into Power BI where they would be filtered based on user selections.  If data volume leads to slow calculation, sensitivity analysis may be done and some of the least impactful options removed to reduce data volume.
 
-2. More detailed interactive plots filtered depending on range and annual mileage selection on main plot:-
+2. More detailed interactive plots filtered on user selections:-
 
-i) Bar chart showing 
+i) Stacked cluster column chart with 5 pairs of 2 stacked bars, showing total 8/4 year* cost for the 5 cheapest Ecars** and their petrol alternatives, comprising 
+
+a) Up front cost or total loan repayments
+b) Replacement costs or total loan repayments
+c) Total fuel costs
+d) Total maintenance costs if data can be found or if not, just the total savings on petrol cars.
+
+*Depending on whether user selects new or used cars.
+**Cheapest depending on if user chooses cheapest up front or total cost.
+
+ii) As above but one stacked column for each of cheapest 5 Ecars showing the differences between Ecar and petrol counterparts.
+
+iii) A bar chart showing the annual CO2 savings for each of the cheapest 5 cars.
 
 * Later, during the project development, you may revisit your dashboard plan to update a given feature (for example, at the beginning of the project you were confident you would use a given plot to display an insight but subsequently you used another plot type).
 * How were data insights communicated to technical and non-technical audiences?

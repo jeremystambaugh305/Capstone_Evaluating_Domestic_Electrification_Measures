@@ -1,13 +1,42 @@
-# Project XYZ
+# Capstone_Evaluating_Domestic_Electrification_Measures 
 
-**Project XYZ** is a comprehensive data analysis tool designed to streamline data exploration, analysis, and visualisation. The tool supports multiple data formats and provides an intuitive interface for both novice and expert data scientists.
+**Capstone_Evaluating_Domestic_Electrification_Measures** is my final (capstone) project carried out in October 2025 as part of the Code Institute Data Analytics and AI Bootcamp.
+
+I have saved all files in Github.  These include this readme file, raw and processed data files, Jupyter notebooks, and the Power BI dashboard (.pbix) file.
+
+The project repository is located here:- 
+https://github.com/jeremystambaugh305/Capstone_Evaluating_Domestic_Electrification_Measures
+
+and the project planning is located here:-
+https://github.com/users/jeremystambaugh305/projects/5
+
+Context
+
+The UK government is currently committed to reducing net carbon emissions to zero by 2050. Significant progress has been achieved to date in reducing the carbon emissions of power generation but less so in other areas such as heat generation and transport which currently use mainly fossil fuels in the UK. Electrifying heating and transport has emerged as a key strategy to decarbonise these sectors, i.e. replacing combustion engine vehicles with electric vehicles and fossil fuel heating with electric heating. In a domestic setting, this would typically mean, for households with a petrol or diesel car, replacing it with an electric car (Ecar) or for households with a gas or oil fired boiler, replacing it with an air source heat pump (ASHP), typically when the householder needs or wishes to replace their car or boiler. Though not a necessity, installing a solar PV array (solarPV), typically on the roof, is another significant measure which will contribute in decarbonising the electricity supply and hopefully save the householder money over its lifetime.
 
 # ![CI logo](https://codeinstitute.s3.amazonaws.com/fullstack/ci_logo_small.png)
 
 
 ## Dataset Content
-* Describe your dataset. Choose a dataset of reasonable size to avoid exceeding the repository's maximum size of 100Gb.
+This project will use a number of datasets sourced from Kaggle, UK government, other public sources and at least one private source with permission. These will include techno-economic databases with costs and technical information for the various technology options, annual heating and electricity consumption statistics for different household categories, and at least one dataset with half hourly electricity consumption of a house for a year (my own) which will be analysed offline to generate useful information but then modified for privacy reasons and processed to demonstrate the analysis process.
 
+All source datasets are expected to be well below the 100MB limit for an individual file in a Github repository using the standard free version of Github. However, cost and carbon savings will then be calculated for various scenarios within Jupyter notebooks which will output large csv files which will all be read into Power BI to facilitate the dashboards. I envisage having 3 csv files, one for Ecars, one for Solar PV and one for ASHPs and then just one Power BI file with multiple sheets so these 3 technologies can be readily compared without having to open dashboard files. Each of the csv files or the Power BI dashboard .pbix file could approach the 100MB limit. I will estimate the size of each of the csv files and of the pbix dashboard file based on dummy outputs and dashboards and monitor their size during development. I will tailor and where necessary, curtail the level of detail and formatting of outputs and underlying analysis to give the most informative insights possible within the 100MB file size limits. An initial trial of the Ecar csv file and loading this into Power BI, the pbix filesize displayed by Windows Explorer is only around 1/6th of the size displayed for the underlying csv file. This implies the pbix is likely to be well below 100MB even if it contains data from 3 csv files approaching 100MB. According to a Bing copliot search this could be due to data compression in Power BI but it is also possible the file size did not correctly display in Windows Explorer so I will still need to monitor all file sizes closely in Github. 
+
+The raw datasets used are as below:-
+
+#### Cheapestelectriccars-EVDatabase_2023.csv
+A techno-economic data (including up front costs, battery size, efficiency) obtained from Kaggle.  Note this was produced in 2023 so is already outdated. For example as explained below, I found in web searches that UK prices have reduced substantially for many of these cars, some are no longer being sold in the UK and some new cars have entered the UK market. Due to the first point, costs and therefore lifetime savings which will be calculated using this dataset are likely to be conservative.  
+Some cars did not have UK prices so I reasearched some online and found some had only recently entered the UK market and some have still not entered the UK market. So I assumed these were all not yet on the UK market in 2023 and removed them from the dataset.
+Otherwise, I have kept to this dataset as it is, as I know of no more recent comprehensive set. I have not updated prices based on the few web searches I did as this would lead to inconsistencies and I did not have sufficient time budget to comprehensively update the dataset. But updating this dataset would be a potential significant future improvement.
+
+I produced several visualisations in the Jupyter notebook to help examine and present the dataset. 
+
+I examined two prominent cost outliers and identified them as luxury cars with their prices plausible based on web searches. So I retained these in the dataset expecting subsequent analysis to show their lifetime cost savings to be poor.
+
+The dataset contains numerical data in various columns as strings including units, for example a column headed 'Range' contains strings such as '640 km', the longest range car sold in UK.  In such cases I created one or more additional columns to obtain the useful numerical information for further analysis. In this example I created one column headed 'Range_km' into which I parsed the integers (640 for this example row), then another column headed 'Range_mi' containing the ranges in float format converted to miles by dividing by 1.60934 (397.678551 for this example row) as I work with ranges in miles rather than km in the subsequent analysis.
+
+#### Other_Dataset.abc
+Abcde
 
 ## Business Requirements
 * This project will evaluate the current cost and carbon reduction potential for the following 3 major electrification measures available to households where none of these currently exists:
@@ -16,36 +45,35 @@
 2. A rooftop mounted solar PV array (Solar PV)
 3. An air source heat pump (ASHP)
 
-These are in my anticipated descending order of potential cost saving for an average home with gas heating and a petrol car.
+These are in my anticipated descending order of potential lifetime cost saving for an average home with gas heating and a petrol car.
+
+Key data and outputs will be displayed in interactive dashboards using Power BI to visually demonstrate the up front costs, lifetime cost savings, and carbon saving potentials of each of these 3 measures.  The aim is to help households decide whether to proceed with one of these electriciation technologies and if so which one.  I will include all dashboards for all 3 key technologies within a single Power BI dashboard pbix file for ease of use and technology comparison.
+
+It should be noted that implementing one of these 3 measures is likely to have an impact on the savings which can be experienced by the other 2 measures but this interaction is beyond the scope of this project. For example, if an Ecar is obtained and a home charger installed, there is potential for a solar PV array to charge it when solar generation exceeds other household electricity demands, thus reducing Ecar fuel costs. But this will depend on the duration the car is at home during times of significant solar generation. Solar PV may similarly benefit ASHPs though this benefit seems likely to be somewhat limited to hot water heating due to relatively little time overlap between space heating demand and solar generation. It seems likely that Ecars and ASHPs would have little mutual benefit and the savings of both combined could possibly be lower than the sum of each, for example an economy 7 tariff may be optimal for an Ecar only but a standard tariff may be cheaper for an ASHP running mostly during the day. So opting for one or the other tariff structure will reduce the savings for one of these technologies. As mentioned above, analysis of such interactions is beyond the scope of this project, but it is envisaged that a householder would typically opt for the most beneficial standalone option first, then re-examine the potential for the other two options in light of the changed situation.
+
+This will be a general tool covering a broad range of situations using datasets some of which are changing quickly so soon outdated, so it is advised that this be followed up with more detailed and focussed analyses using the latest data.
 
 ## Hypothesis and how to validate?
 * I anticipate the following results but these will be evaluated in this project:-
 
-1. Out of the 3 options, Ecars, in particular secondhand, will have the greatest cost saving potential where home charging is available but this will be greatly diminished, possibly negated, where home charging is unavailable with all charging from public chargers.
+1. Out of the 3 options, Ecars, in particular secondhand, will have the most significant lifetime cost saving potential but only in households where home charging can be installed. Cost savings will be greatly diminished, possibly negated, where home charging cannot be installed so the user has to do all charging with public chargers.
 
-2. Moderate long term potential cost savings from solar PV in households with high daytime occupancy, particularly if high energy electrical appliances are operated at times of high sun. But savings will be greatly diminished if daytime occupancy is low as current export values are low.  Incorporating battery storage may improve but only slightly as they have high up front costs.
+2. Solar PV will have moderate lifetime cost saving potential in households with high daytime occupancy, particularly if high energy electrical appliances are operated during high sunlight hours e.g. 10:00-14:00 GMT or 11:00-15:00 BST. But savings will be greatly diminished if daytime occupancy is low as current export values are low. Incorporating battery storage may improve this, but only slightly as batteries have high up front costs.
 
-3. No cost saving from air source heat pumps compared with gas heating as 
+3. No lifetime cost saving from ASHPs compared with gas heating as 
 i) The up front costs of ASHPs are substantially higher than gas boilers even with the current government boiler upgrade grant support scheme (BUS) 
-ii) The current ratio between electricity and gas prices is generally higher than the ratio between heat pump and gas boiler efficiency meaning air source heat pumps have higher fuel costs than gas boilers. 
+ii) The current ratio between electricity and gas prices is typically higher than the ratio between ASHP and gas boiler efficiency meaning ASHPs have higher fuel costs than gas boilers.
 The above cost disadvanteges are offset to a degree by ASHPs having longer anticipated life spans and lower maintenance costs, but these advantages seem unlikely to reverse the situation.
 
-iii) All options will clearly reduce CO2 emissions but solar PV will have the lowest CO2 reductions in most cases due to the carbon intensity and generated electrical energy being much lower than the carbon intensity and displaced heating gas or car petrol consumption energy.  
+iii) All options will clearly reduce CO2 emissions but solar PV will have the lowest CO2 reductions in most cases due to the carbon intensity and generated electrical energy quantity (kWh) being much lower than the carbon intensity (kgCO2/kWh) and displaced heating gas or car petrol consumption energy.
 
-iv) For an averahe household, Ecars and ASHPs displace a very similar amount of CO2, just over 2 Tonnes.  This is based on average annual car mileage of 7,100 miles at 45MPG and gas heating consumption of 11,500kWh at an efficiency of 86%GCV. So Ecars will likely displace more CO2 than ASHPs in households with a higher ratio of car mileage/heating consumption and vice versa.
+iv) For an average household, Ecars and ASHPs displace a similar amount of CO2, each just over 2 Tonnes per year. This is based on average annual car mileage of 7,100 miles at 45MPG and gas heating consumption of 11,500kWh at an efficiency of 86%GCV. So Ecars will likely displace more CO2 than ASHPs in households with a higher ratio of car mileage/heating consumption and vice versa.
 
-These anticipated results will be evaluated by cost and carbon calculations using techno-economic data obtained from Kaggle, UK government and other public websites which will be analysed statistically and feature engineered as necessary before feeding these calculations.
-
-Key data and outputs will be displayed in interactive dashboards using Power BI to visually demonstrate the up front costs and the cost and carbon saving potentials of each of these 3 measures, firstly under the likely range of domestic circumstances and secondly in more detail, those particular to each household.  The aim is to help households decide whether to proceed with one or more of these electriciation technologies and if so which one(s).  
-
-This will be a general tool covering a broad range of situations using datasets some of which are changing quickly so soon outdated, so it is advised that this be followed up with more detailed and focussed analyses using the latest data.
+These anticipated results will be evaluated by cost and carbon calculations using the source datasets which will be analysed statistically and feature engineered as necessary before feeding these calculations.
 
 ## Project Plan
 
-# 
-### ECars
-
-A techno-economic data (including up front costs, battery size, efficiency) were obtained from Kaggle.  Note this data was produced in 2023 so may be somewhat outdated.  For example some web searches indicate some cars no longer available, new cars available and some substantial price reductions so this data is likely to be conservative.  I have kept to this dataset as I know of no more recent comprehensive set but this would be a potential future improvement.
+* Outline the high-level steps taken for the analysis.
 * How was the data managed throughout the collection, processing, analysis and interpretation steps?
 * Why did you choose the research methodologies you used?
 
@@ -59,8 +87,11 @@ A techno-economic data (including up front costs, battery size, efficiency) were
 * How did you use generative AI tools to help with ideation, design thinking and code optimisation?
 
 ## Ethical considerations
-* Were there any data privacy, bias or fairness issues with the data?
-* How did you overcome any legal or societal issues?
+* The Ecar analysis and dashboard has the potential for inaccuracies given it is based on a 2023 dataset from Kaggle itself scraped from a database, which I have not verified for myself, and other assumptions and possible errors. It aims to demonstrate the cost and carbon saving potential for Ecars, ignoring the merits of other attributes of the Ecars such as safety, comfort, performance, people and luggage capacity etc. This project is public and has not been rigourously tested, I therefore feel nervous presenting results for individual cars. I will therefore calculate an average archetype Ecar for each annual mileage and range category to avoid the appearance of steering users towards certain cars and away from others and risking legal challenge.  
+
+Where necessary, I will similarly use typical archetype cost and technical data for Solar PV and ASHP installations rather than individual items though this is likely to be less of an issue in any case as these tend to be more bespoke in any case being made up of several components and installation specific as opposed to buying a car.
+
+* The half hourly electricity consumption I have obtained from my smart meter is useful for analysing Solar PV but could identify my family's occupancy patterns facilitating burglary etc. I will conduct some analysis offline, most likely the % of solar PV I could have used on site in that year and only use this key output in subsequent analysis. I will then select a representative day and repeat 365 times to create a synthetic dataset and perform the same analysis on this demonstrate how I analysed the actual dataset.
 
 ## Dashboard Design
 * List all dashboard pages and their content, either blocks of information or widgets, like buttons, checkboxes, images, or any other item that your dashboard library supports.

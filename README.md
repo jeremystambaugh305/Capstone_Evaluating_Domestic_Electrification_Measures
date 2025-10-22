@@ -104,22 +104,23 @@ I will therefore suitably group/round or otherwise anomymise results to ensure r
 * List all dashboard pages and their content, either blocks of information or widgets, like buttons, checkboxes, images, or any other item that your dashboard library supports.
 
 * Ecars. 
-1. Key dashboard result - a bubble plot showing lifetime cost savings of the most economical Ecar for each mileage range and annual mileage combination (lowest up front or 8 year cost depending on user selection) by bubble size and colour on a 2 dimensional plot with range and annual mileage on the x and y axes respectively. I developed the idea in Excel as shown below but this may look diferent, hopefully better in Power BI where savings would also be demonstrated with colour shading and negative values in red scale rather than grey.
+1. Key dashboard result - a bubble plot showing total cost savings of the cheapest or most cost effective Ecar for each mileage range and annual mileage combination (lowest up front or total cost depending on user selection) on a 2 dimensional plot with range and annual mileage on the x and y axes respectively and total savings shown by bubble size and colour. I developed the idea in Excel as shown below but this may look diferent, hopefully better in Power BI where savings would also be demonstrated with colour shading and negative values in red scale rather than grey.
 
-![alt text](image-2.png)
+![alt text](image-8.png)
+![alt text](image-9.png)
 
-This allows users to quickly and flexibly see a map of all range and annual mileage scenarios, which are most favourable, if well known, the point on the map the range and annual mileage sits, or if uncertain the region of applicable scenarios to judge how much the best Ecar is likely to save them over 8 years for a new car or 4 years for a 4-year old used car.
+This allows users to quickly and flexibly see a map of all range and annual mileage scenarios, which are most favourable, if well known, the point on the map the range and annual mileage sits, or if uncertain the region of applicable scenarios to judge how much the cheapest or most cost effective Ecar would save them over 8 years if buying new or over 4 years if buying 4-year old used car(s). This includes the cost of buying a replacement car during the assessment timescale which is necessary for the high annual mileage scenarios (>25,000 miles for new cars and >12,500 miles for used cars which are assumed to last 200,000 and 100,000 miles respectively).
 
 Selectable variable setting variations on the above:-
 
 i) Access to a home charger Y/N.
-ii) If the Ecar is new or 4 year old used.
-iii) If Ecar and counterfactual petrol car would be bought with cash or a loan at 7.5%
+ii) If the Ecar is new or used (4 year old).
+iii) If Ecar and counterfactual petrol car would be bought with cash or a loan with 7.5% APR
 iv) If counterfactual petrol car is an assumed to be equivalent or the cheapest.
 v) If anticipated maintenance cost saving is low/med or high.
-vi) If cheapest car is selected based on up front or total cost over 8/4 years for new/used.
+vi) If cheapest car is selected based on up front or total cost over the assessment timescale of 8 or 4 years for new or used.
 
-Results for all 96 combinations will be pre calculated in Jupyter notebook and loaded into Power BI where they would be filtered based on user selections.  If data volume leads to slow calculation, sensitivity analysis may be done and some of the least impactful options removed to reduce data volume.
+The above plot examples represent 2 of these 96 combinations. Results for all 96 combinations will be pre calculated in Jupyter notebook and loaded into Power BI where they would be filtered based on user selections.  If data volume leads to slow calculation, sensitivity analysis may be done and some of the least impactful options removed to reduce data volume.
 
 2. More detailed interactive plots filtered on user selections:-
 

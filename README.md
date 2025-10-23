@@ -106,8 +106,8 @@ I will therefore suitably group/round or otherwise anomymise results to ensure r
 * Ecars. 
 1. Key dashboard result - a bubble plot showing total cost savings of the cheapest or most cost effective Ecar for each mileage range and annual mileage combination (lowest up front or total cost depending on user selection) on a 2 dimensional plot with range and annual mileage on the x and y axes respectively and total savings shown by bubble size and colour. I developed the idea in Excel as shown below but this may look diferent, hopefully better in Power BI where savings would also be demonstrated with colour shading and negative values in red scale rather than grey.
 
-![alt text](image-8.png)
-![alt text](image-9.png)
+![alt text](image-23.png)
+![alt text](image-24.png)
 
 This allows users to quickly and flexibly see a map of all range and annual mileage scenarios, which are most favourable, if well known, the point on the map the range and annual mileage sits, or if uncertain the region of applicable scenarios to judge how much the cheapest or most cost effective Ecar would save them over 8 years if buying new or over 4 years if buying 4-year old used car(s). This includes the cost of buying a replacement car during the assessment timescale which is necessary for the high annual mileage scenarios (>25,000 miles for new cars and >12,500 miles for used cars which are assumed to last 200,000 and 100,000 miles respectively).
 
@@ -124,19 +124,30 @@ The above plot examples represent 2 of these 96 combinations. Results for all 96
 
 2. More detailed interactive plots filtered on user selections:-
 
-i) Stacked cluster column chart with 5 pairs of 2 stacked bars, showing total 8/4 year* cost for the 5 cheapest Ecars** and their petrol alternatives, comprising 
+i) Stacked cluster column chart with up to 9 pairs of stacked bars (one for each Ecar archetype capable of a user selected range requirement), showing total 8/4 year* costs for the suitable archetype Ecars and their petrol alternatives, comprising 
 
-a) Up front cost or total loan repayments
-b) Replacement costs or total loan repayments
-c) Total fuel costs
-d) Total maintenance costs if data can be found or if not, just the total savings on petrol cars.
+a) Up front costs+any replacement costs + any loan interest
+b) Total fuel costs
+c) Total maintenance costs.
 
 *Depending on whether user selects new or used cars.
-**Cheapest depending on if user chooses cheapest up front or total cost.
 
-ii) As above but one stacked column for each of cheapest 5 Ecars showing the differences between Ecar and petrol counterparts.
+Examples 
 
-iii) A bar chart showing the annual CO2 savings for each of the cheapest 5 cars.
+![alt text](image-25.png)
+![alt text](image-26.png)
+![alt text](image-27.png)
+
+
+In all examples the user is looking to buy a 4 year old secondhand car without finance and operate for 4 years. The first example shows a user with a near average annual mileage of 7,500 and a low range requirement of only 60 miles. Total 4 year mileage is less than the assumed remaining 100,000 mile life of the used car so no replacements are required. Ecar archetypes 1-6 have a total cost saving compared with an equivalent electric car and either archetype 2 or 3 has the lowest total cost it's unclear which from the graph and also the lowest up front costs of all Ecar archetypes. But archetypes 7-9 do not save money, their petrol alternatives having lower total costs.  
+
+The second example shows a higher annual mileage user (20,000) with a higher range requirement of 120 miles a home charger and no workplace charging.  Again the total 4 year mileage is less than the assumed remaining 100,000 mile life of the used car so no replacements are required. Only archetypes 5-9 can meet this range requirement and archetype 5 has the lowest up front cost of all Ecars and lowest total cost and all Ecars save money overall, having lower total costs than their petrol alternatives.
+
+The third example is a high annual mileage (40,000) high range 150mi requirement user but with no ability to install a home charger.  The total 4 year mileage exceeds the assumed remaining 100,000 mile life of the used car so a replacement is required in the 4 year timeframe. As a result only archetypes 7, 8 and 9 have sufficient range.  As well as having higher up front costs Ecars have slightly higher fuel costs since all charging is with public chargers so despite slightly lower maintenance costs, the total costs of Ecars is higher for all suitable archetypes.
+
+These charts would give a visual picture of the relative up front costs, total costs, and likely savings if buying different sizes of car.  The cheapest overall will typically be one of the smallest Ecars suitable for their required range, sometimes not the smallest as a slightly larger car may be more efficient. But the user could select a much larger car, for other reasons, e.g. for space or comfort or safety.  The chart tells them in that case if such a large electric car would still cost less than it's petrol alternative.
+
+ii) A cluster column chart showing the annual CO2 emissions for each of the 9 Ecar archetypes and it's petrol alternative.
 
 * Later, during the project development, you may revisit your dashboard plan to update a given feature (for example, at the beginning of the project you were confident you would use a given plot to display an insight but subsequently you used another plot type).
 * How were data insights communicated to technical and non-technical audiences?

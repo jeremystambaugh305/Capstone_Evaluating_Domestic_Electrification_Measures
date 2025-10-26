@@ -39,7 +39,7 @@ The dataset contains numerical data in various columns as strings including unit
 Abcde
 
 ## Business Requirements
-* This project will evaluate the current cost and carbon reduction potential for the following 3 major electrification measures available to households where none of these currently exists:
+* This project will aim to evaluate the current cost and carbon reduction potential for the following 3 major electrification measures available to households where none of these currently exists:
 
 1. An electric car (Ecar)
 2. A rooftop mounted solar PV array (Solar PV)
@@ -101,53 +101,162 @@ I will therefore suitably group/round or otherwise anomymise results to ensure r
 * I have obtained half hourly electricity and gas consumption from my smart meter which I intend to use to calculate the cost and CO2 benefits of Solar PV and ASHPs, but showing the data directly could identify my family's occupancy patterns facilitating burglary etc. I will conduct some analysis offline, most likely the % of solar PV I could have used on site in that year and only use this key output in subsequent analysis. I will then select a representative day and repeat 365 times to create a synthetic dataset and perform the same analysis on this demonstrate how I analysed the actual dataset.
 
 ## Dashboard Design
-* List all dashboard pages and their content, either blocks of information or widgets, like buttons, checkboxes, images, or any other item that your dashboard library supports.
 
-* Ecars. 
-1. Key dashboard result - a bubble plot showing total cost savings of the cheapest or most cost effective Ecar for each mileage range and annual mileage combination (lowest up front or total cost depending on user selection) on a 2 dimensional plot with range and annual mileage on the x and y axes respectively and total savings shown by bubble size and colour. I developed the idea in Excel as shown below but this may look diferent, hopefully better in Power BI where savings would also be demonstrated with colour shading and negative values in red scale rather than grey.
+I will create the main user dashboards using Power BI, the purpose being to inform a less technical user in their choice of Ecar, Solar PV or ASHP based on the potential for cost and CO2 savings and also on up front costs which may be a consideration.
+
+I will calculate the key variables such as total cost and CO2 savings based on public data sources.
+
+# Data analysis in Jupyter notebooks
+I will use Python libraries within Jupyter notebooks to assess the suitability and relevance of key source datasets, and also to calculate cost and CO2 savings under various scenarios, using the key datasets along with other referenced data points and assumptions. 
+
+Having calculated the cost and CO2 savings in Jupyter notebooks for all scenarios which I envisage will underpin my Power BI dashboards, I will statistically assess the cost savings as target variables against source, assumed and scenario variables as feature variables to quantify the importance of the different variables and strength of correlation with cost savings. I will use my findings to inform my final decisions on which results to present in the Power BI dashboards.
+
+# Power BI dashboards
+Subject to the findings of statistics on my calculated cost savings (and CO2 savings if appropriate) I propose the following Power BI dashboards:-
+
+# Ecars
+
+1) a main dashboard bubble plot showing total cost savings of the cheapest or most cost effective Ecar for each mileage range and annual mileage combination (lowest up front or total cost depending on user selection) on a 2 dimensional plot with range and annual mileage on the x and y axes respectively and total savings shown by bubble size and colour. I developed the idea in Excel as shown below but this may look diferent, hopefully better in Power BI where savings would also be demonstrated with colour shading and negative values in red scale rather than grey.
 
 ![alt text](image-23.png)
 ![alt text](image-24.png)
+![alt text](image-1.png)
+
+The final example shows that with typical public charging rates, electric cars are not cost effective without home charging, even if no loan required and buying used cars.
 
 This allows users to quickly and flexibly see a map of all range and annual mileage scenarios, which are most favourable, if well known, the point on the map the range and annual mileage sits, or if uncertain the region of applicable scenarios to judge how much the cheapest or most cost effective Ecar would save them over 8 years if buying new or over 4 years if buying 4-year old used car(s). This includes the cost of buying a replacement car during the assessment timescale which is necessary for the high annual mileage scenarios (>25,000 miles for new cars and >12,500 miles for used cars which are assumed to last 200,000 and 100,000 miles respectively).
 
-Selectable variable setting variations on the above:-
+Selectable user variables:-
 
-i) Access to a home charger Y/N.
-ii) If the Ecar is new or used (4 year old).
-iii) If Ecar and counterfactual petrol car would be bought with cash or a loan with 7.5% APR
-iv) If counterfactual petrol car is an assumed to be equivalent or the cheapest.
-v) If anticipated maintenance cost saving is low/med or high.
-vi) If cheapest car is selected based on up front or total cost over the assessment timescale of 8 or 4 years for new or used.
+a) If the user can install a home charger or not.
+b) If the Ecar is new or used (4 year old).
+c) If Ecar and counterfactual petrol car would be bought with cash or a loan with 7.5% APR
+d) If the alternative petrol car is an assumed to be an equivalent with price = 80% of the Ecar or the cheapest petrol car available.
+e) If anticipated maintenance cost saving is low/med or high.
+f) If the cheapest Ecar for each annual mileage and range scenario would be selected based on up front or total costs over the assessment timescale of 8 or 4 years for new or used.
+g) If the electric car has a high or average* charging efficiency (100/88%)
+h) If the alternative petrol car has a high or average** engine efficiency (50/36 MPG).
 
-The above plot examples represent 2 of these 96 combinations. Results for all 96 combinations will be pre calculated in Jupyter notebook and loaded into Power BI where they would be filtered based on user selections.  If data volume leads to slow calculation, sensitivity analysis may be done and some of the least impactful options removed to reduce data volume.
+*Review by Which 
 
-2. More detailed interactive plots filtered on user selections:-
+https://www.which.co.uk/reviews/new-and-used-cars/article/electric-car-charging-guide/how-much-does-it-cost-to-charge-an-electric-car-a8f4g1o7JzXj
 
-i) Stacked cluster column chart with up to 9 pairs of stacked bars (one for each Ecar archetype capable of a user selected range requirement), showing total 8/4 year* costs for the suitable archetype Ecars and their petrol alternatives, comprising 
+and 
 
-a) Up front costs+any replacement costs + any loan interest
+**Nimblefins
+
+https://www.nimblefins.co.uk/cheap-car-insurance/average-mpg
+
+suggest the average UK charging efficiency is around 88% and the average petrol car efficiency is around 36 MPG, but the former seems likely includes rapid charging and charging beyond 80% SOC. The efficiency if only charging to 80% and if homecharging is likely higher.
+
+The above plot examples represent 3 of the above combinations of which there are 2*2*2*2*3*2*2*2 = 384. Results for all 384 combinations will be pre calculated in Jupyter notebook and loaded into Power BI where they would be filtered based on user selections.  If data volume leads to slow calculation, sensitivity analysis will be done and some of the least impactful options removed to reduce data volume e.g. charging efficiency.
+
+2. User specific interactive dashboards, filtered on user selections:-
+
+i) A stacked cluster column chart with up to 9 pairs of stacked bars (one for each Ecar archetype capable of a user selected range requirement), showing the total costs for the suitable archetype Ecars and their petrol alternatives over 8 or 4 years for new or used cars, comprising 
+
+a) Up front costs including charger if applicable
+b) Replacement costs if applicable
+c) Any loan interest if applicable
 b) Total fuel costs
-c) Total maintenance costs.
-
-*Depending on whether user selects new or used cars.
+c) Total maintenance costs
 
 Examples 
 
-![alt text](image-25.png)
-![alt text](image-26.png)
-![alt text](image-27.png)
+![alt text](image-2.png)
+![alt text](image-3.png)
+![alt text](image-4.png)
 
 
-In all examples the user is looking to buy a 4 year old secondhand car without finance and operate for 4 years. The first example shows a user with a near average annual mileage of 7,500 and a low range requirement of only 60 miles. Total 4 year mileage is less than the assumed remaining 100,000 mile life of the used car so no replacements are required. Ecar archetypes 1-6 have a total cost saving compared with an equivalent electric car and either archetype 2 or 3 has the lowest total cost it's unclear which from the graph and also the lowest up front costs of all Ecar archetypes. But archetypes 7-9 do not save money, their petrol alternatives having lower total costs.  
+The user in each example is looking to buy a 4 year old secondhand car with finance. 
 
-The second example shows a higher annual mileage user (20,000) with a higher range requirement of 120 miles a home charger and no workplace charging.  Again the total 4 year mileage is less than the assumed remaining 100,000 mile life of the used car so no replacements are required. Only archetypes 5-9 can meet this range requirement and archetype 5 has the lowest up front cost of all Ecars and lowest total cost and all Ecars save money overall, having lower total costs than their petrol alternatives.
+The first example shows a user with a near average annual mileage of 7,500 and a low range requirement of only 60 miles and ability to install a home charger. Total 4 year mileage is less than the assumed remaining 100,000 mile life of the used car so no replacements are required. Ecar archetypes 1-4 have a total cost saving compared with an equivalent electric car.  Trchetype with the lowest up front and total cost is either 2 or 3, it's unclear which from the graph. Archetype 5 has a similar total cost to it's petrol alternative. But archetypes 6-9 do not save money, their petrol alternatives having lower total costs.  
 
-The third example is a high annual mileage (40,000) high range 150mi requirement user but with no ability to install a home charger.  The total 4 year mileage exceeds the assumed remaining 100,000 mile life of the used car so a replacement is required in the 4 year timeframe. As a result only archetypes 7, 8 and 9 have sufficient range.  As well as having higher up front costs Ecars have slightly higher fuel costs since all charging is with public chargers so despite slightly lower maintenance costs, the total costs of Ecars is higher for all suitable archetypes.
+The second example shows a user with a higher annual mileage of 20,000 with a higher range requirement of 120 miles, e.g. a 60 mile commute each way with no workplace charging, and ability to install a home charger. Again the total 4 year mileage is less than the assumed remaining 100,000 mile life of the used car so no replacements are required. Only archetypes 5-9 can meet this range requirement and archetype 5 has the lowest up front and total cost of all Ecars, and all Ecars save money overall, having lower total costs than their petrol alternatives.
 
-These charts would give a visual picture of the relative up front costs, total costs, and likely savings if buying different sizes of car.  The cheapest overall will typically be one of the smallest Ecars suitable for their required range, sometimes not the smallest as a slightly larger car may be more efficient. But the user could select a much larger car, for other reasons, e.g. for space or comfort or safety.  The chart tells them in that case if such a large electric car would still cost less than it's petrol alternative.
+The third example is a high annual mileage (40,000) high range 150mi requirement user but with no ability to install a home charger.  The total 4 year mileage exceeds the assumed remaining 100,000 mile life of the used car so a replacement is required in the 4 year timeframe. Only archetypes 7, 8 and 9 have sufficient range.  As well as having higher up front costs, without home charging, Ecars have slightly higher fuel costs since all charging is with public chargers so despite slightly lower maintenance costs, the total costs of Ecars is higher for all suitable archetypes.
 
-ii) A cluster column chart showing the annual CO2 emissions for each of the 9 Ecar archetypes and it's petrol alternative.
+These charts give a visual comparison of the relative up front, replacement and interest costs, fuel and maintenance costs and total costs of suitable Ecars and their petrol alternatives, with different mileage ranges exceeding the user's requirement.  
+
+The cheapest overall Ecar will typically be one of the smallest suitable but sometimes not the smallest, as a slightly larger car may be more efficient or cost effective. However, a user may desire or need a much larger car, for other reasons, e.g. for space or comfort or safety. The dashboard only indicates car size in terms of range so a user would need to consider actual individual cars but they could then compare a desired Ecar's range with an archetype of similar range to compare the costs of such an Ecar with it's petrol alternative.
+
+ii) A combo column and line chart showing the fuel cost per mile for Ecars at various domestic and public charging rate electricity prices on the x-axis, with two horizontal lines showing the costs per mile for petrol cars with medium and high efficiencies (50/36MPG).
+
+iii) A cluster column chart showing the annual CO2 emissions resulting from each of the 9 Ecar archetypes and it's petrol alternative.
+
+For Ecars, the CO2 is generated at power stations supplying the electricity rather than at source as for petrol cars.
+
+For example 
+
+![alt text](image-5.png)
+![alt text](image-6.png)
+
+In the first example I assumed a high Ecar charging efficiency of 100% and a high petrol car efficiency of 50 miles to the gallon (MPG) as in previous examples above but in the second example I assumed average charging and petrol car efficiencies of 88% and 36MPG respectively.
+
+In all cases electric cars result in much lower CO2 emissions than petrol cars.
+
+The following should be noted:-
+
+1. The CO2 intensity of electricity (kg CO2 per kWh) has been falling significantly in recent years and is expected to continue falling in line with net zero targets. Future falls are uncertain but it is very clear that current CO2 emissions from Ecars are much lower than those of petrol cars so for simplicity I have assumed CO2 intensity will remain at current levels through the assessment timescale which is conservative but this matters little as the CO2 saving argument is clear in any case. Taking account of the predicted fall in CO2 intensity would be a further potential refinement.
+
+2. The CO2 intensity of electricity varies with time of day and is typically lower at night so this will typically be lower when most of the charging is done overnight, e.g. when a home charger can be installed and when the battery is small enough to be completely charged overnight. It also depends on the generators assumed to supply an Ecar and if these are:-
+
+i)  The most CO2 intensive generators on the grid at any point in time (typically gas-fired)
+
+ii) A share of all types of generator on the grid at any point in time.
+
+I have used the electricity CO2 intensity factors provided by the UK government Greenhouse Gas Inventory which is based on the latter.
+
+https://assets.publishing.service.gov.uk/media/6722566a3758e4604742aa1e/ghg-conversion-factors-2024-condensed_set__for_most_users__v1_1.xlsx
+
+A future refinement would be to model and compare CO2 intensity depending on the charging times of the different scenarios.  This would not change the clear fact that Ecars result in significantly lower CO2 emissions than petrol cars but it could affect any comparisons of Ecar CO2 saving potential with that of Solar PV and ASHPs.
+
+# SolarPV
+
+Similar to those for Ecars above, I propose having
+
+1) A main bubble chart overview dashboard showing solar panel size and annual electricity consumption on the x and y axes and with the bubble size and colour in line with total savings over the PV array lifetime.
+
+I propose allowing the following user selectable variables to alter this main dashboard:-
+
+
+a) The number of days per week the house is occupied by someone during the majority of the time between 09/10 and 15/16 GMT when most solar power is generated.
+
+b) Location from a list of x UK regions which will affect the number of kWh which can be generated per kW capacity.
+
+
+2) User specific interactive dashboards allowing the user to also select:-
+
+a) their annual electricity consumptions from a list e.g. 2,500, 2,750, 3,000, .... 5,000 kWh
+
+b) ???
+
+And based on this create dashboards showing
+
+i) A stacked cluster chart showing up front Solar PV costs, total lifetime maintenance and electricity costs (net of electricity sold back to suppliers through the smart export guarantee) and the alternative total electricity costs without a solar PV side by side.
+
+ii) A cluster chart showing total CO2 emissions associated with all electricity generated by PV and consumed by the household with and without Solar PV.
+
+As with Ecars the average existing electricity CO2 intensity for 2025 will be assumed, based on the UK greenhouse gas inventory, but in reality this is falling year on year, changes with time of day and depending on which generators would supply each unit of household consumption with and without solar PV. Taking account of this would be a further refinement.
+
+# ASHPs
+As mentioned above I do not anticipate much liklihood of domestic ASHPs being cost effective for a typical UK user who has conventional gas heating.  
+
+I propose the following main dashboards
+
+i) A cluster column chart showing the up-front cost, replacement cost, fuel cost and maintenance cost for ASHP installations and their gas boiler alternatives side by side for a range of different annual gas consumption levels increasing on the x axis 
+e.g. 7,500, 10,000, 12,500 ... 40,000 kWh. Energy prices will calculated internally, based on gas consumption, typical electricity consumption, and UK Quarterly Energy Reports.  The user will be able to select their annual gas consumption from the bar chart and select high/med or low ASHP efficiencies (SCOPs) which will change the bar charts.
+
+ii) A cluster chart showing CO2 emissions for ASHPs and their gas boiler alternatives.  As with Ecars, this should show very significantly lower CO2 emissions with ASHPs.
+
+As with Ecars I propose to assume the average existing electricity CO2 intensity for 2025, based on the UK greenhouse gas inventory, but in reality this is falling year on year, changes with time of day and depending on which generators would supply each unit of ASHP consumption. ASHPs consume more electricity in winter and during waking hours when it often has a higher CO2 intensity. Taking account of this would be a further refinement.
+
+Other charts at time allows could include:-
+
+A cluster column chart showing annual ASHP electricity and gas boiler fuel costs side by side  for high, med and low ASHP efficiencies (SCOPs) with electricity and gas prices at the selected gas consumption level.
+
+A cluster column chart showing annual ASHP electricity and gas boiler fuel costs side by side for various electricity/gas price ratios centred on the typical range at the selected high/med/low ASHP efficiency (SCOP).
+
 
 * Later, during the project development, you may revisit your dashboard plan to update a given feature (for example, at the beginning of the project you were confident you would use a given plot to display an insight but subsequently you used another plot type).
 * How were data insights communicated to technical and non-technical audiences?
@@ -163,22 +272,18 @@ ii) A cluster column chart showing the annual CO2 emissions for each of the 9 Ec
 * What new skills or tools do you plan to learn next based on your project experience? 
 
 ## Deployment
-### Heroku
+### Power BI
 
-* The App live link is: https://YOUR_APP_NAME.herokuapp.com/ 
-* Set the runtime.txt Python version to a [Heroku-20](https://devcenter.heroku.com/articles/python-support#supported-runtimes) stack currently supported version.
-* The project was deployed to Heroku using the following steps.
-
-1. Log in to Heroku and create an App
-2. From the Deploy tab, select GitHub as the deployment method.
-3. Select your repository name and click Search. Once it is found, click Connect.
-4. Select the branch you want to deploy, then click Deploy Branch.
-5. The deployment process should happen smoothly if all deployment files are fully functional. Click now the button Open App on the top of the page to access your App.
-6. If the slug size is too large then add large files not required for the app to the .slugignore file.
+* The dashboards will be created using Power BI with the pbix files uploaded to this repository.
 
 
 ## Main Data Analysis Libraries
-* Here you should list the libraries you used in the project and provide an example(s) of how you used these libraries.
+* I will use the following Python libraries:-
+
+1. NumPy
+2. Pandas
+3. MatPlotLib
+4. Seaborn
 
 
 ## Credits 
@@ -186,18 +291,12 @@ ii) A cluster column chart showing the annual CO2 emissions for each of the 9 Ec
 * In this section, you need to reference where you got your content, media and extra help from. It is common practice to use code from other repositories and tutorials, however, it is important to be very specific about these sources to avoid plagiarism. 
 * You can break the credits section up into Content and Media, depending on what you have included in your project. 
 
-### Content 
+### Templates
 
-- The text for the Home page was taken from Wikipedia Article A
-- Instructions on how to implement form validation on the Sign-Up page was taken from [Specific YouTube Tutorial](https://www.youtube.com/)
-- The icons in the footer were taken from [Font Awesome](https://fontawesome.com/)
+- This repository structure, the Jupyter notebooks and this readme were created by adapting the Code Institute's repository and readme templates which can currently be found at the following locations.
 
-### Media
-
-- The photos used on the home and sign-up page are from This Open-Source site
-- The images used for the gallery page were taken from this other open-source site
-
-
+https://github.com/Code-Institute-Solutions/da-README-template
+https://github.com/ci-student/data-analytics-template
 
 ## Acknowledgements (optional)
-* Thank the people who provided support through this project.
+* Thanks to all staff at Code Institute involved in teaching and facilitating the Data Analytics and AI course from Jun-Oct 2025, providing me with the IT knowledge and tools required for this project and for support and understanding given to me. In particular Vasi and Paul. Thanks also to fellow cohort students who helped me on various occasions, in particular Mike.

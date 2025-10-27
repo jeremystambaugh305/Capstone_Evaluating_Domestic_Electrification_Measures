@@ -25,7 +25,7 @@ All source datasets are expected to be well below the 100MB limit for an individ
 The raw datasets used are as below:-
 
 #### Cheapestelectriccars-EVDatabase_2023.csv
-<Cheapestelectriccars-EVDatabase_2023.csv> is a techno-economic data (including up front costs, battery size, efficiency) obtained from Kaggle at https://www.kaggle.com/datasets/kkhandekar/cheapest-electric-cars. According to the documentation this was webscraped from another electrical vehicle database https://ev-database.org. <Cheapestelectriccars-EVDatabase_2023.csv> was produced in 2023 so is already outdated. For example as explained below, I found in web searches that UK prices have reduced substantially for many of these cars, some are no longer being sold in the UK and some new cars have entered the UK market. Due to the first point, costs and therefore lifetime savings which will be calculated using this dataset are likely to be conservative.  
+`Cheapestelectriccars-EVDatabase_2023.csv` is a techno-economic data (including up front costs, battery size, efficiency) obtained from Kaggle at https://www.kaggle.com/datasets/kkhandekar/cheapest-electric-cars. According to the documentation this was webscraped from another electrical vehicle database https://ev-database.org. `Cheapestelectriccars-EVDatabase_2023.csv` was produced in 2023 so is already outdated. For example as explained below, I found in web searches that UK prices have reduced substantially for many of these cars, some are no longer being sold in the UK and some new cars have entered the UK market. Due to the first point, costs and therefore lifetime savings which will be calculated using this dataset are likely to be conservative.  
 Some cars did not have UK prices so I researched some online and found some had only recently entered the UK market and some have still not entered the UK market. So I assumed these were all not yet on the UK market in 2023 and removed them from the dataset.
 Otherwise, I have kept to this dataset as it is, as I know of no more recent comprehensive set. I have not updated prices based on the few web searches I did as this would lead to inconsistencies and I did not have sufficient time budget to comprehensively update the dataset. But updating this dataset would be a potential significant future improvement.
 
@@ -76,9 +76,23 @@ iii) All technologies will almost certainly reduce annual CO2 emissions and this
 
 ## Project Plan
 
-* Outline the high-level steps taken for the analysis.
-* How was the data managed throughout the collection, processing, analysis and interpretation steps?
-* Why did you choose the research methodologies you used?
+### What high-level steps were taken for the analysis?
+
+For the ideation and wireframing of the Ecars dashboards, I developed charts and the underlying calculations in Microsoft Excel.
+
+I researched and obtained suitable input data from Kaggle and other public sources, capturing the references, urls etc.
+
+I created a high level Kanban board plan in Github projects.
+
+### How was the data managed throughout the collection, processing, analysis and interpretation steps?
+
+I saved datasets, e.g. `Cheapestelectriccars-EVDatabase_2023.csv` to a project folder within Windows exporer, then dragged relevant key datasets across to my project folder in vscode for loading.  Other data included one off numbers obtained from various sources which I referenced.
+
+### Why did you choose the research methodologies you used?
+I had extensive experience with assessing the cost effectiveness of ASHP, some for SOlar PV and little for Ecars but having considered all three for my own personal circumstances, I believed that Ecars offer the most potential for cost savings followed by Solar PV with ASHPs offering little cost saving potential, at least where gas heating is the alternative. I therefore spent most time and focus on Ecars then Solar PV and finally ASHPs.
+
+#### Ideation use of Microsoft Excel
+I carried out most of my ideation of dashboards, in particular for Ecars, by setting up calculations and charts in Excel before replicating calculations in the Jupyter notebooks and charts in Power BI. Developing ideas in Excel was more intuitive to me being familiar with the software and having extensive calculations in Excel did provide me with a good cross check on the results when I replicated them in the Jupyter notebook and Power BI dashboards. However, the latter applications are clearly much faster than Excel in processing and visualising the datasets so I will try to develop my ideas directly in Jupyter notebooks and Power BI in future projects and only use Excel as a simple check as seems appropriate.
 
 ## The rationale to map the business requirements to the Data Visualisations
 * List your business requirements and a rationale to map them to the Data Visualisations
@@ -90,13 +104,13 @@ iii) All technologies will almost certainly reduce annual CO2 emissions and this
 * How did you use generative AI tools to help with ideation, design thinking and code optimisation?
 
 ## Ethical considerations
-* I will clearly point out that the Kaggle car database do not intend to present any cost saving or CO2 results for individually identifiable Ecars.  Even if all calculations and underlying assumptions were completely accurate doing so carries legal risks but in addition, many inaccuracies are almost certain, given the following
+* I have not presented any cost savings or CO2 results for individually identifiable Ecars.  Even if all calculations and underlying assumptions were completely accurate doing so could carry legal risks, but many inaccuracies are inevitable given the following:-
 
-i) It is based on a dataset from Kaggle which was scraped from another online database in 2023 so now outdated. I have not verified any of the scraped data for myself and unsure if this is even possible as the source database has likely changed. 
+i) My Ecar analysis is largely based on a dataset from Kaggle `Cheapestelectriccars-EVDatabase_2023.csv` which was scraped from another online database in 2023 so now outdated. I have not verified any of the scraped data for myself was in line with the source database as it was in 2023, if this is even possible. 
 
-ii) I have used many other assumptions and data sources which have not been rigourously reviewed independently. 
+ii) I have used many other assumptions and data sources which have not been rigourously reviewed independently.
 
-I will therefore suitably group/round or otherwise anomymise results to ensure results are generally informative to users without allowing them to identify the cost and CO2 performance of individual Ecars.
+I therefore grouped actual Ecars into bins with different mileage ranges, calculated an archetype car for each with average range, price, battery size and efficiency, calculated and presented the cost and CO2 savings for these archetypes to be informative to users who would then research individual Ecars within these mileage range bins themselves.
 
 * I have obtained half hourly electricity and gas consumption from my smart meter which I intend to use to calculate the cost and CO2 benefits of Solar PV and ASHPs, but showing the data directly could identify my family's occupancy patterns facilitating burglary etc. I will conduct some analysis offline, most likely the % of solar PV I could have used on site in that year and only use this key output in subsequent analysis. I will then select a representative day and repeat 365 times to create a synthetic dataset and perform the same analysis on this demonstrate how I analysed the actual dataset.
 
@@ -118,38 +132,54 @@ Subject to the findings of statistics on my calculated cost savings (and CO2 sav
 
 1) a main dashboard bubble plot showing total cost savings of the cheapest or most cost effective Ecar for each mileage range and annual mileage combination (lowest up front or total cost depending on user selection) on a 2 dimensional plot with range and annual mileage on the x and y axes respectively and total savings shown by bubble size and colour. I developed the idea in Excel as shown below but this may look diferent, hopefully better in Power BI where savings would also be demonstrated with colour shading and negative values in red scale rather than grey.
 
-![alt text](image-23.png)
-![alt text](image-24.png)
+Examples
+
+![alt text](image.png)
 ![alt text](image-1.png)
+![alt text](image-2.png)
+![alt text](image-3.png)
 
-The final example shows that with typical public charging rates, electric cars are not cost effective without home charging, even if no loan required and buying used cars.
+The first example shows the most favourable situation where a user has the ability to install a home charger, is looking for a 4 year old secondhand Ecar or an equivalent petrol car (as opposed to cheapest petrol car available) without requiring a loan.  For a given range requirement, the higher the annual mileage the higher the annual saving up to a certain annual mileage where this falls due to the requirement for a replacement car within the timescale examined before rising again with annual mileage.  Most Ecars will result in savings even with low annual mileage except for the very largest cars which will require a slightly higher annual mileage to result in savings.
 
-This allows users to quickly and flexibly see a map of all range and annual mileage scenarios, which are most favourable, if well known, the point on the map the range and annual mileage sits, or if uncertain the region of applicable scenarios to judge how much the cheapest or most cost effective Ecar would save them over 8 years if buying new or over 4 years if buying 4-year old used car(s). This includes the cost of buying a replacement car during the assessment timescale which is necessary for the high annual mileage scenarios (>25,000 miles for new cars and >12,500 miles for used cars which are assumed to last 200,000 and 100,000 miles respectively).
+The second example is as the first, except that the user requires a loan to buy the Ecar or the petrol alternative, at an APR of 7.5%, a fairly typical current rate for this amount of money.  This shows a reduction in the range of circumstances for which an Ecar would result in a saving compared with the petrol alternative and also a reduction in the savings where it is still cost effective.
+
+The third example is as the second example, except that the user does not have the ability to install a home charger, e.g. they do not have a driveway adjacent to their home.  In this scenario Ecars will not save money compared with their petrol alternative for any range requirement or annual mileage scenarios, showing how critical access to a home charger is to the financial viability of an Ecar.
+
+The final example is as the second, except the user wishes to purchase a new car rather than secondhand.  This indicates savings are more likely for smaller Ecars.
+
+In the above examples it was simply assumed that an equivalent petrol car would cost 80% of the cost of a new Ecar, i.e. an Ecar costs 25% more which is a typical ratio currently but this premium is likely to differ between small and large cars and narrow generally in the future, so a future improvement would be to review which petrol cars are equivalent to each size of Ecar and obtain new and used cost data.
+
+To accommodate this uncertainty, I will also consider adding an option to allow the user to select between a ratios of 80% or 100% will also be added to the dashboard, doubling the number of calculations.
+
+This main dashboard allows users to quickly and flexibly see a map of all range and annual mileage scenarios, which are most favourable, if well known, the point on the map the range and annual mileage sits, or if uncertain the region of applicable scenarios to judge how much the cheapest or most cost effective Ecar would save them over 8 years if buying new or over 4 years if buying 4-year old used car(s). This includes the cost of buying a replacement car during the assessment timescale which is necessary for the high annual mileage scenarios (>25,000 miles for new cars and >12,500 miles for used cars which are assumed to last 200,000 and 100,000 miles respectively).
 
 Selectable user variables:-
 
 a) If the user can install a home charger or not.
 b) If the Ecar is new or used (4 year old).
 c) If Ecar and counterfactual petrol car would be bought with cash or a loan with 7.5% APR
-d) If the alternative petrol car is an assumed to be an equivalent with price = 80% of the Ecar or the cheapest petrol car available.
+d) If the alternative petrol car is assumed to be an equivalent with a price of 80%* of the Ecar, or the cheapest petrol car available.
 e) If anticipated maintenance cost saving is low/med or high.
 f) If the cheapest Ecar for each annual mileage and range scenario would be selected based on up front or total costs over the assessment timescale of 8 or 4 years for new or used.
-g) If the electric car has a high or average* charging efficiency (100/88%)
-h) If the alternative petrol car has a high or average** engine efficiency (50/36 MPG).
+g) If the electric car has a high or average charging efficiency (100 or 88%**)
+h) If the alternative petrol car has a high or average efficiency of 50MPG or 36MPG***.
 
-*Review by Which 
+* Typically 80% according to the Electric Car Scheme
+https://www.electriccarscheme.com/blog/electric-cars-vs-petrol-cars-the-ultimate-debate
+
+But may be higher for used cars according to carbuyer.  If 100% then Ecars will save money in all cases due to lower up front and also running costs, so this was not modelled as it would again double the data volume and conclusion is obvious.
+
+https://www.carbuyer.co.uk/car-buying/305896/used-ev-bargains-data-suggests-evs-are-cheaper-than-petrol-cars-on-the-used
+
+**Review by Which 
 
 https://www.which.co.uk/reviews/new-and-used-cars/article/electric-car-charging-guide/how-much-does-it-cost-to-charge-an-electric-car-a8f4g1o7JzXj
 
-and 
-
-**Nimblefins
+***Review by Nimblefins
 
 https://www.nimblefins.co.uk/cheap-car-insurance/average-mpg
 
-suggest the average UK charging efficiency is around 88% and the average petrol car efficiency is around 36 MPG, but the former seems likely includes rapid charging and charging beyond 80% SOC. The efficiency if only charging to 80% and if homecharging is likely higher.
-
-The above plot examples represent 3 of the above combinations of which there are 2*2*2*2*3*2*2*2 = 384. Results for all 384 combinations will be pre calculated in Jupyter notebook and loaded into Power BI where they would be filtered based on user selections.  If data volume leads to slow calculation, sensitivity analysis will be done and some of the least impactful options removed to reduce data volume e.g. charging efficiency.
+The above examples represent just 4 of the above combinations of which there are 2*2*2*2*3*2*2*2 = 384. Results for all 384 combinations will be pre calculated in Jupyter notebook and loaded into Power BI where they would be filtered based on user selections.  The result will be analysed, e.g. with correlation matrices, to assess the sensitivity of cost savings to other variables. If data volume leads to slow calculation or the output csv file exceeding the 100MB Github limit, variations on the variables with least impact and the ability to amend these in the dashboard will be removed to reduce data volume.
 
 2. User specific interactive dashboards, filtered on user selections:-
 
@@ -163,20 +193,23 @@ c) Total maintenance costs
 
 Examples 
 
-![alt text](image-2.png)
-![alt text](image-3.png)
 ![alt text](image-4.png)
+![alt text](image-5.png)
+![alt text](image-6.png)
+![alt text](image-7.png)
 
 
-The user in each example is looking to buy a 4 year old secondhand car with finance. 
+The user in each example is looking to buy a 4 year old secondhand car with a loan. 
 
-The first example shows a user with a near average annual mileage of 7,500 and a low range requirement of only 60 miles and ability to install a home charger. Total 4 year mileage is less than the assumed remaining 100,000 mile life of the used car so no replacements are required. Ecar archetypes 1-4 have a total cost saving compared with an equivalent electric car.  Trchetype with the lowest up front and total cost is either 2 or 3, it's unclear which from the graph. Archetype 5 has a similar total cost to it's petrol alternative. But archetypes 6-9 do not save money, their petrol alternatives having lower total costs.  
+The first example shows a user with a near average annual mileage of 7,500 and a low range requirement of only 60 miles and ability to install a home charger. Total 4 year mileage is less than the assumed remaining 100,000 mile life of the used car so no replacements are required. Ecar archetypes 1-4 have a total cost saving compared with an equivalent electric car.  The archetype with the lowest up front and total cost is either 2 or 3, it's unclear which from the graph. Archetype 5 has a similar total cost to it's petrol alternative. But archetypes 6-9 do not save money, their petrol alternatives having lower total costs.
 
 The second example shows a user with a higher annual mileage of 20,000 with a higher range requirement of 120 miles, e.g. a 60 mile commute each way with no workplace charging, and ability to install a home charger. Again the total 4 year mileage is less than the assumed remaining 100,000 mile life of the used car so no replacements are required. Only archetypes 5-9 can meet this range requirement and archetype 5 has the lowest up front and total cost of all Ecars, and all Ecars save money overall, having lower total costs than their petrol alternatives.
 
-The third example is a high annual mileage (40,000) high range 150mi requirement user but with no ability to install a home charger.  The total 4 year mileage exceeds the assumed remaining 100,000 mile life of the used car so a replacement is required in the 4 year timeframe. Only archetypes 7, 8 and 9 have sufficient range.  As well as having higher up front costs, without home charging, Ecars have slightly higher fuel costs since all charging is with public chargers so despite slightly lower maintenance costs, the total costs of Ecars is higher for all suitable archetypes.
+The third example is a high annual mileage (40,000) high range 150mi requirement user with the ability to install a home charger.  The total 4 year mileage exceeds the assumed remaining 100,000 mile life of the used car so a replacement is required in the 4 year timeframe. Only archetypes 7, 8 and 9 have sufficient range and they all save money overall, having lower total costs than their petrol alternatives, archetype 7 having the lowest cost.
 
-These charts give a visual comparison of the relative up front, replacement and interest costs, fuel and maintenance costs and total costs of suitable Ecars and their petrol alternatives, with different mileage ranges exceeding the user's requirement.  
+The final example is the same as the third but where the user has no ability to install a home charger. As well as having higher up front costs, without home charging, Ecars also have slightly higher fuel costs since all charging is with public chargers so despite slightly lower maintenance costs, the total costs of Ecars is higher for all suitable archetypes.
+
+These charts give a visual comparison of the relative up front, replacement and interest costs, fuel and maintenance costs and total costs of suitable Ecars and their petrol alternatives, with different mileage ranges exceeding the user's requirement with the user selected combination of other variables such as whether it is possible to install homecharger, whether a loan is required etc.
 
 The cheapest overall Ecar will typically be one of the smallest suitable but sometimes not the smallest, as a slightly larger car may be more efficient or cost effective. However, a user may desire or need a much larger car, for other reasons, e.g. for space or comfort or safety. The dashboard only indicates car size in terms of range so a user would need to consider actual individual cars but they could then compare a desired Ecar's range with an archetype of similar range to compare the costs of such an Ecar with it's petrol alternative.
 
@@ -188,16 +221,17 @@ For Ecars, the CO2 is generated at power stations supplying the electricity rath
 
 For example 
 
-![alt text](image-5.png)
-![alt text](image-6.png)
+![alt text](image-9.png)
+![alt text](image-8.png)
 
+In both examples I assumed an annual mileage of 7,500 and a range requirement of 60 miles requiring an Ecar range of 100 miles, hence all archetypes are suitable.
 In the first example I assumed a high Ecar charging efficiency of 100% and a high petrol car efficiency of 50 miles to the gallon (MPG) as in previous examples above but in the second example I assumed average charging and petrol car efficiencies of 88% and 36MPG respectively.
 
 In all cases electric cars result in much lower CO2 emissions than petrol cars.
 
 The following should be noted:-
 
-1. The CO2 intensity of electricity (kg CO2 per kWh) has been falling significantly in recent years and is expected to continue falling in line with net zero targets. Future falls are uncertain but it is very clear that current CO2 emissions from Ecars are much lower than those of petrol cars so for simplicity I have assumed CO2 intensity will remain at current levels through the assessment timescale which is conservative but this matters little as the CO2 saving argument is clear in any case. Taking account of the predicted fall in CO2 intensity would be a further potential refinement.
+1. The CO2 intensity of electricity (kg CO2 per kWh) has been falling significantly in recent years and is expected to continue falling in line with net zero targets. Future falls are uncertain but it is very clear that current CO2 emissions from Ecars are much lower than those of petrol cars so for simplicity I have assumed CO2 intensity will remain at current levels through the assessment timescale. This is conservative but matters little since the CO2 saving is already clear.
 
 2. The CO2 intensity of electricity varies with time of day and is typically lower at night so this will typically be lower when most of the charging is done overnight, e.g. when a home charger can be installed and when the battery is small enough to be completely charged overnight. It also depends on the generators assumed to supply an Ecar and if these are:-
 
@@ -209,7 +243,9 @@ I have used the electricity CO2 intensity factors provided by the UK government 
 
 https://assets.publishing.service.gov.uk/media/6722566a3758e4604742aa1e/ghg-conversion-factors-2024-condensed_set__for_most_users__v1_1.xlsx
 
-A future refinement would be to model and compare CO2 intensity depending on the charging times of the different scenarios.  This would not change the clear fact that Ecars result in significantly lower CO2 emissions than petrol cars but it could affect any comparisons of Ecar CO2 saving potential with that of Solar PV and ASHPs.
+A potential future refinement would be to model and compare CO2 intensity depending on the charging times of the different scenarios and take account of predicted future changes to the generation mix. this would not change the clear fact that Ecars result in significantly lower CO2 emissions than petrol cars but could affect any comparisons of the CO2 saving potential for Ecars with those of Solar PV and ASHPs.
+
+However, refining the parameters affecting cost saving calculations for Ecars and also the other technologies below is probably a higher priority as this is most likely to determine which if any of these options is implemented.
 
 # SolarPV
 

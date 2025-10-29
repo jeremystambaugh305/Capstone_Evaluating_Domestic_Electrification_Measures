@@ -159,10 +159,13 @@ a) If the user can install a home charger or not.
 b) If the Ecar is new or used (4 year old).
 c) If Ecar and counterfactual petrol car would be bought with cash or a loan with 7.5% APR
 d) If the alternative petrol car is assumed to be an equivalent with a price of 80%* of the Ecar, or the cheapest petrol car available.
-e) If anticipated maintenance cost saving is low/med or high.
-f) If the cheapest Ecar for each annual mileage and range scenario would be selected based on up front or total costs over the assessment timescale of 8 or 4 years for new or used.
-g) If the electric car has a high or average charging efficiency (100 or 88%**)
-h) If the alternative petrol car has a high or average efficiency of 50MPG or 36MPG***.
+e) If the electric car has a high or average charging efficiency (100 or 88%**)
+f) If the alternative petrol car has a high or average efficiency of 50MPG or 36MPG***
+g) If anticipated maintenance cost saving is low/med or high.
+
+Also
+
+h) If the cheapest Ecar archetype for each annual mileage and range and above scenario combination is selected based on up front or total costs over the assessment timescale of 8 or 4 years for new or used, though this could be calculated in a seperate table with only the total savings for the best archetype for each of these 2 options to reduce overall data volume.
 
 * Typically 80% according to the Electric Car Scheme
 https://www.electriccarscheme.com/blog/electric-cars-vs-petrol-cars-the-ultimate-debate
